@@ -8,14 +8,6 @@ fixture_dir = path.abspath(
     path.join(path.dirname(__file__), '../fixtures/'))
 fixture_surahs = 'surah_list.json'
 fixture_ayahs = 'ayah_list.json'
-fixture_reciters = 'reciters_list.json'
-
-recitation_dir = path.join(fixture_dir, 'recitation')
-
-#  get all recitations json files from fixtures/recitation directory
-fixture_recitations_list = [
-    path.join(recitation_dir, filename)
-    for filename in listdir(recitation_dir)]
 
 
 def load_surahs(apps, schema_editor):
@@ -42,30 +34,6 @@ def unload_ayahs(apps, schema_editor):
     Ayah.objects.all().delete()
 
 
-def load_reciters(apps, schema_editor):
-    fixture_file = path.join(fixture_dir, fixture_reciters)
-    call_command('loaddata', fixture_file)
-
-
-def unload_reciters(apps, schema_editor):
-    "Brutally deleting all entries for this model..."
-
-    Reciter = apps.get_model("quran", "Reciter")
-    Reciter.objects.all().delete()
-
-
-def load_recitations(apps, schema_editor):
-    for fixture_file in fixture_recitations_list:
-        call_command('loaddata', fixture_file)
-
-
-def unload_recitations(apps, schema_editor):
-    "Brutally deleting all entries for this model..."
-
-    Recitation = apps.get_model("quran", "Recitation")
-    Recitation.objects.all().delete()
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -75,7 +43,4 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(load_surahs, reverse_code=unload_surahs),
         migrations.RunPython(load_ayahs, reverse_code=unload_ayahs),
-        migrations.RunPython(load_reciters, reverse_code=unload_reciters),
-        migrations.RunPython(
-            load_recitations, reverse_code=unload_recitations),
     ]
