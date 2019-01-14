@@ -1,7 +1,10 @@
-from django.urls import path
-
+from django.urls import re_path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    re_path(
+        'api/(?P<version>(v1|v2))/quran',
+        views.SurahListView.as_view(),
+        name="surahs-all",
+    ),
 ]

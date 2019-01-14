@@ -1,5 +1,11 @@
-from django.http import HttpResponse
+from rest_framework import generics
+from .models import Surah
+from .serializers import SurahSerializer
 
 
-def home(request):
-    return HttpResponse('Hello world!')
+class SurahListView(generics.ListAPIView):
+    """
+    Provides a get method handler for Surahs.
+    """
+    queryset = Surah.objects.all()
+    serializer_class = SurahSerializer

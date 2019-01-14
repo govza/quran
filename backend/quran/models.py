@@ -1,5 +1,5 @@
 '''Models of Quran app'''
-from django.db import migrations, models
+from django.db import models
 
 
 class Surah(models.Model):
