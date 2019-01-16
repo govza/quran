@@ -17,3 +17,6 @@ class Ayah(models.Model):
         Surah,
         on_delete=models.CASCADE,
         related_name='ayahs')
+
+    class Meta:
+        ordering = ['number']
