@@ -1,4 +1,4 @@
-from django.db import migrations, models
+from django.db import models
 
 
 class Reciter(models.Model):
@@ -20,3 +20,6 @@ class Recitation(models.Model):
         Reciter,
         on_delete=models.CASCADE,
         related_name='recitation')
+
+    class Meta:
+        ordering = ['ayah']
