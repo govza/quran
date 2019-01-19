@@ -5,17 +5,17 @@ from . import views
 
 urlpatterns = [
     re_path(
-        r'api/(?P<version>(v1|v2))/recite/(?P<reciter>\d+)/(?P<surah>\d+)/$',
+        r'recite/(?P<reciter_id>\d+)/(?P<surah_id>\d+)/$',
         views.RecitationListView.as_view(),
         name="reciter-recitations"
     ),
     re_path(
-        r'api/(?P<version>(v1|v2))/recite/(?P<reciter>\d+)/$',
+        r'recite/(?P<reciter_id>\d+)/$',
         views.ReciterDetailsView.as_view(),
         name="reciter-details",
     ),
     re_path(
-        r'api/(?P<version>(v1|v2))/recite/$',
+        r'recite/$',
         views.ReciterListView.as_view(),
         name="reciters-all",
     )
