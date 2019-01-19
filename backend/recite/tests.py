@@ -17,7 +17,7 @@ class GetRecite(APITestCase):
         '''
         # hit the API endpoint
         response = self.client.get(
-            reverse("reciters-all", kwargs={"version": "v1"})
+            reverse("reciters-all")
         )
         # fetch the data from db
         expected = Reciter.objects.all()
@@ -38,8 +38,7 @@ class GetRecite(APITestCase):
                 reverse(
                     "reciter-details",
                     kwargs={
-                        "version": "v1",
-                        "reciter": reciter.id
+                        "reciter_id": reciter.id
                     }
                 )
             )
@@ -66,9 +65,8 @@ class GetRecite(APITestCase):
                     reverse(
                         "reciter-recitations",
                         kwargs={
-                            "version": "v1",
-                            "reciter": reciter.id,
-                            "surah": surah
+                            "reciter_id": reciter.id,
+                            "surah_id": surah
                         }
                     )
                 )
