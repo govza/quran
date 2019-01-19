@@ -8,7 +8,7 @@ from .models import Surah
 
 class SurahListView(generics.ListAPIView):
     """
-    Provides a get method handler for Surahs.
+    Provides a get method handler for Surah list.
     """
     queryset = Surah.objects.all()
     serializer_class = serializers.SurahSerializer
@@ -16,7 +16,7 @@ class SurahListView(generics.ListAPIView):
 
 class SurahDetailsView(generics.RetrieveAPIView):
     """
-    Provieds a get method handler for Surah details.
+    Provides a get method handler for Surah details.
     """
     queryset = Surah.objects.all()
     serializer_class = serializers.SurahSerializer
