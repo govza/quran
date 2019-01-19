@@ -22,8 +22,8 @@ class RecitationListView(generics.ListAPIView):
     serializer_class = serializers.RecitationSerializer
 
     def get_queryset(self):
-        reciter = self.kwargs['reciter']
-        surah = self.kwargs['surah']
+        reciter = self.kwargs['reciter_id']
+        surah = self.kwargs['surah_id']
 
         recitations = Recitation.objects.filter(surah=surah, reciter=reciter)
 
@@ -42,13 +42,13 @@ class ReciterDetailsView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            reciter = self.queryset.get(id=kwargs["reciter"])
+            reciter = self.queryset.get(id=kwargs["reciter_id"])
             return Response(serializers.ReciterSerializer(reciter).data)
         except Reciter.DoesNotExist:
             return Response(
                 data={
                     "message": "Reciter with id: {} does not exist".format(
-                        kwargs["reciter"])
+                        kwargs["reciter_id"])
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
