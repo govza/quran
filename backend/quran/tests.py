@@ -17,7 +17,7 @@ class GetQuran(APITestCase):
         '''
         # hit the API endpoint
         response = self.client.get(
-            reverse("surahs-all", kwargs={"version": "v1"})
+            reverse("surahs-all")
         )
         # fetch the data from db
         expected = Surah.objects.all()
@@ -41,7 +41,6 @@ class GetQuran(APITestCase):
                 reverse(
                     "surah-details",
                     kwargs={
-                        "version": "v1",
                         "surah_id": surah_id
                     }
                 )
@@ -61,7 +60,6 @@ class GetQuran(APITestCase):
             reverse(
                 "surah-details",
                 kwargs={
-                    "version": "v1",
                     "surah_id": 115
                 }
             )
