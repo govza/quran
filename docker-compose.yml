@@ -29,6 +29,19 @@ services:
       - "8080:8080"
     env_file:
       - ./.env.secret
+  angular:
+    environment:
+      - HOST=0.0.0.0
+    build: ./angular/
+    command: ng serve --host 0.0.0.0
+    volumes:
+      - ./angular:/www/angular
+      - /www/angular/node_modules
+    ports:
+      - "4200:4200"
+    depends_on:
+    - backend
 volumes:
   postgres:
     external: true
+  node-modules:
