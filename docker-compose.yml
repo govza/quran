@@ -33,12 +33,13 @@ services:
     environment:
       - HOST=0.0.0.0
     build: ./angular/
-    command: ng serve --host 0.0.0.0
+    command: npm run start
     volumes:
       - ./angular:/www/angular
       - /www/angular/node_modules
     ports:
       - "4200:4200"
+      - "49153:49153"
     depends_on:
     - backend
 volumes:
